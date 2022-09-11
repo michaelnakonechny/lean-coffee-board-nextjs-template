@@ -4,6 +4,19 @@ import styled from "styled-components";
 import Card from "../components/Card";
 import Form from "../components/Form";
 
+import { getAllQuestions } from "../services/questionsService";
+
+
+export async function getServerSideProps() {
+  const questions = await getAllQuestions();
+
+  return {
+    props: {
+      questions: questions,
+    },
+  };
+}
+
 export default function Home() {
   const [cardList, setCardList] = useState([]);
 
